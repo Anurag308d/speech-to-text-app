@@ -1,3 +1,13 @@
+---
+title: Speech to Text
+emoji: 🎙️
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # Speech to Text
 
 A web app that transcribes speech in real time, including mixed Hindi and English, saves each
@@ -58,6 +68,15 @@ The first time the app starts it downloads the two Piper voices (about 120 MB) i
 | GET | `/api/health` | Health check |
 
 Interactive API docs are at `/docs`.
+
+## Deploy (Hugging Face Spaces + Neon)
+
+1. Create a free PostgreSQL database on [Neon](https://neon.tech) and copy its connection string.
+2. Create a new Space on Hugging Face with the **Docker** SDK (blank template).
+3. In the Space's **Settings → Variables and secrets**, add the secrets `GROQ_API_KEY` and
+   `DATABASE_URL` (the Neon connection string).
+4. Push this repository to the Space. The `Dockerfile` installs everything, downloads the
+   Piper voices and serves the app on port 7860.
 
 ## Project structure
 
