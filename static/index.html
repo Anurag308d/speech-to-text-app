@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Speech to Text</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Speech to Text</h1>
+    <nav>
+      <button class="tab active" data-view="record">Record</button>
+      <button class="tab" data-view="history">History</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="view-record" class="view active">
+      <div class="card">
+        <p class="hint">Speak in English, Hindi or a mix of both. Text appears every few seconds.</p>
+        <div class="controls">
+          <button id="btn-start" class="primary">Start recording</button>
+          <button id="btn-stop" disabled>Stop</button>
+          <span id="status" class="status">Idle</span>
+        </div>
+        <div id="live-text" class="live-text" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="view-history" class="view">
+      <div class="card">
+        <div class="toolbar">
+          <input id="search" type="search" placeholder="Search transcripts">
+        </div>
+        <ul id="history-list" class="history-list"></ul>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
