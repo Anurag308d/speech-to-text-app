@@ -3,8 +3,10 @@ title: Speech to Text
 emoji: 🎙️
 colorFrom: blue
 colorTo: indigo
-sdk: docker
-app_port: 7860
+sdk: gradio
+sdk_version: 5.9.1
+python_version: "3.12"
+app_file: space_app.py
 pinned: false
 ---
 
@@ -72,11 +74,13 @@ Interactive API docs are at `/docs`.
 ## Deploy (Hugging Face Spaces + Neon)
 
 1. Create a free PostgreSQL database on [Neon](https://neon.tech) and copy its connection string.
-2. Create a new Space on Hugging Face with the **Docker** SDK (blank template).
+2. Create a new Space on Hugging Face with the **Gradio** SDK (blank template, free CPU).
+   `space_app.py` runs the FastAPI app on port 7860; no Gradio UI is used.
 3. In the Space's **Settings → Variables and secrets**, add the secrets `GROQ_API_KEY` and
    `DATABASE_URL` (the Neon connection string).
-4. Push this repository to the Space. The `Dockerfile` installs everything, downloads the
-   Piper voices and serves the app on port 7860.
+4. Push this repository to the Space. It installs `requirements.txt`, downloads the Piper
+   voices on first start and serves the app. A `Dockerfile` is also included for any
+   Docker host.
 
 ## Project structure
 
