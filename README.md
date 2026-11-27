@@ -1,16 +1,6 @@
----
-title: Speech to Text
-emoji: 🎙️
-colorFrom: blue
-colorTo: indigo
-sdk: gradio
-sdk_version: 5.9.1
-python_version: "3.12"
-app_file: space_app.py
-pinned: false
----
-
 # Speech to Text
+
+**Live demo:** https://speech-to-text-app-0pos.onrender.com (free hosting, so the first load after a quiet spell can take about a minute)
 
 A web app that transcribes speech in real time, including mixed Hindi and English, saves each
 transcript to PostgreSQL, and lets you view, edit, delete and replay transcripts from a dashboard.
@@ -71,16 +61,16 @@ The first time the app starts it downloads the two Piper voices (about 120 MB) i
 
 Interactive API docs are at `/docs`.
 
-## Deploy (Hugging Face Spaces + Neon)
+## Deploy (Render + Neon)
 
 1. Create a free PostgreSQL database on [Neon](https://neon.tech) and copy its connection string.
-2. Create a new Space on Hugging Face with the **Gradio** SDK (blank template, free CPU).
-   `space_app.py` runs the FastAPI app on port 7860; no Gradio UI is used.
-3. In the Space's **Settings → Variables and secrets**, add the secrets `GROQ_API_KEY` and
-   `DATABASE_URL` (the Neon connection string).
-4. Push this repository to the Space. It installs `requirements.txt`, downloads the Piper
-   voices on first start and serves the app. A `Dockerfile` is also included for any
-   Docker host.
+2. On [Render](https://render.com), create a **Web Service** from this repo with runtime **Python 3**:
+   - Build command: `pip install -r requirements.txt`
+   - Start command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+3. Add the environment variables `GROQ_API_KEY`, `DATABASE_URL` (the Neon string) and
+   `PYTHON_VERSION=3.12.8`.
+
+A `Dockerfile` is also included for Docker hosts.
 
 ## Project structure
 
