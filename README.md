@@ -33,6 +33,13 @@ without installing PostgreSQL. In production it uses PostgreSQL.
 
 The first time the app starts it downloads the two Piper voices (about 120 MB) into `voices/`.
 
+## Tests
+
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
+
 ## How it works
 
 1. The browser records the microphone in short segments. A segment ends at a pause in speech
